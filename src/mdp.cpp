@@ -21,6 +21,8 @@ Mdp::Mdp(std::string fileName, int mInput) {
   }
 }
 
+Mdp::Mdp() {}
+
 Mdp::~Mdp(){}
 
 std::vector<float> Mdp::calculateCentre(std::vector<Element> inputSet) {
@@ -59,6 +61,22 @@ float Mdp::calculateZ() {
       z += calculateDistance(solution[i].getPosition(), solution[j].getPosition());
     }
   }
-  std::cout << z<<"\n";
+ // std::cout << z<<"\n";
   return z;
+}
+
+Mdp& Mdp::operator=(const Mdp& other) {
+  n = other.n;
+  k = other.k;
+  m = other.m;
+  set = other.set;
+  solution = other.solution;
+  return *this;
+}
+
+void Mdp::printMdp() {
+  for (int k = 0; k < solution.size(); k++) {
+    solution[k].print();
+  }
+  std::cout << "Z: " << calculateZ() << "\n";
 }
