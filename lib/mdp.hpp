@@ -20,7 +20,7 @@ class Mdp {
     Mdp(std::string fileName, int mInput);
     ~Mdp();
     std::vector<float> calculateCentre(std::vector<Element> inputSet);
-    std::vector<Element> getSet();
+    std::vector<Element>& getSet();
     int getM();
     float calculateDistance(std::vector<float> pointA, std::vector<float> pointB);
     float calculateZ();

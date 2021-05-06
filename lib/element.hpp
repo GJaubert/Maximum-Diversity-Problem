@@ -9,8 +9,10 @@ class Element {
     std::vector<float> position;
   public:
     Element(std::vector<float>);
+    Element();
     ~Element();
     std::vector<float> getPosition();
+    Element& operator=(const Element& other);
     void print();
 };
 

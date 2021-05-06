@@ -13,9 +13,7 @@ void Greedy::computeSolution(Mdp object) {
     std::cout << object.solution[i].getPosition()[0] << " " << object.solution[i].getPosition()[1] << "\n";
   }
   std::cout << object.calculateZ() << "\n";
-  //greedyChange(object);
-  greedyChange(object);
-  //object.solution = getLocalOptimal(object);
+  object.solution = getLocalOptimal(object);
   object.printMdp();
 }
 
@@ -55,7 +53,6 @@ bool Greedy::greedyChange(Mdp& object) {
       object.solution.insert(object.solution.begin() + i, object.getSet()[j]);
       float tmpZ = object.calculateZ();
       if (tmpZ > bestZ) {
-        std::cout << "ENRE";
         bestMdp = object;
         bestZ = tmpZ;
         improvement = true;

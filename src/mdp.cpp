@@ -38,7 +38,7 @@ std::vector<float> Mdp::calculateCentre(std::vector<Element> inputSet) {
   return centre;
 }
 
-std::vector<Element> Mdp::getSet() {
+std::vector<Element>& Mdp::getSet() {
   return set;
 }
 
