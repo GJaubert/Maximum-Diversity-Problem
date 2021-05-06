@@ -13,9 +13,10 @@ void Greedy::computeSolution(Mdp object) {
     std::cout << object.solution[i].getPosition()[0] << " " << object.solution[i].getPosition()[1] << "\n";
   }
   std::cout << object.calculateZ() << "\n";
-  greedyChange(object);
   //greedyChange(object);
- // getLocalOptimal(object);
+  greedyChange(object);
+  //object.solution = getLocalOptimal(object);
+  object.printMdp();
 }
 
 int Greedy::furthestElement(std::vector<float> centre, std::vector<Element> set, Mdp object) {
@@ -35,30 +36,26 @@ std::vector<Element> Greedy::getLocalOptimal(Mdp object) {
   bool improvement = false;
   int i = 0;
   do {
-    std::cout << "ole";
     improvement = greedyChange(object);
     i++;
-  } while (i < 5);
-  for (int k = 0; k < object.solution.size(); k++) {
-    object.solution[k].print();
-  }
-  std::cout << object.calculateZ();
+  } while (improvement);
+  //maeobject.printMdp();
   return object.solution;
 }
 
 bool Greedy::greedyChange(Mdp& object) {
   bool improvement = false;
   Mdp originalCopy;
-  Mdp bestMdp;
-  int bestZ = object.calculateZ();
-  std::cout << "ole";
+  Mdp bestMdp = object;
+  float bestZ = object.calculateZ();
   originalCopy = object;
   for (int i = 0; i < object.solution.size(); i++) {
     for (int j = 0; j < object.getSet().size(); j++) {
       object.solution.erase(object.solution.begin() + i);
       object.solution.insert(object.solution.begin() + i, object.getSet()[j]);
-      int tmpZ = object.calculateZ();
+      float tmpZ = object.calculateZ();
       if (tmpZ > bestZ) {
+        std::cout << "ENRE";
         bestMdp = object;
         bestZ = tmpZ;
         improvement = true;
@@ -66,7 +63,7 @@ bool Greedy::greedyChange(Mdp& object) {
     }
     object = originalCopy;
   }
+  //bestMdp.printMdp();
   object = bestMdp;
-  object.printMdp();
   return improvement;
 }

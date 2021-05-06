@@ -75,8 +75,8 @@ Mdp& Mdp::operator=(const Mdp& other) {
 }
 
 void Mdp::printMdp() {
-  for (int k = 0; k < solution.size(); k++) {
-    solution[k].print();
+  for (int i = 0; i < solution.size(); i++) {
+    solution[i].print();
   }
   std::cout << "Z: " << calculateZ() << "\n";
 }
