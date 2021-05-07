@@ -80,3 +80,18 @@ void Mdp::printMdp() {
   }
   std::cout << "Z: " << calculateZ() << "\n";
 }
+
+std::string Mdp::toString() {
+  std::string str;
+  for (int i = 0; i < solution.size(); i++) {
+    str += " [ ";
+    for (int k = 0; k < solution[i].getPosition().size(); k++) {
+      std::string tmp = std::to_string(solution[i].getPosition()[k]);
+      tmp.erase(tmp.begin() + 4, tmp.end());
+      str += tmp;
+      str += " ";
+    }
+    str += "] ";
+  }
+  return str;
+}

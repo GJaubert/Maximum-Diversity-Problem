@@ -1,6 +1,6 @@
 #include "../lib/greedy.hpp"
 
-void Greedy::computeSolution(Mdp object) {
+Mdp Greedy::computeSolution(Mdp object) {
   std::vector<Element> elem = object.getSet();
   std::vector<float> centre = object.calculateCentre(elem);
   do {
@@ -15,6 +15,7 @@ void Greedy::computeSolution(Mdp object) {
   std::cout << object.calculateZ() << "\n";
   object.solution = getLocalOptimal(object);
   object.printMdp();
+  return object;
 }
 
 int Greedy::furthestElement(std::vector<float> centre, std::vector<Element> set, Mdp object) {
@@ -37,7 +38,6 @@ std::vector<Element> Greedy::getLocalOptimal(Mdp object) {
     improvement = greedyChange(object);
     i++;
   } while (improvement);
-  //maeobject.printMdp();
   return object.solution;
 }
 

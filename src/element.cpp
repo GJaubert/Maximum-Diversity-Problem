@@ -6,7 +6,7 @@ Element::Element(std::vector<float> input) {
 
 Element::Element() {}
 
-Element::~Element(){}
+Element::~Element() {}
 
 void Element::print() {
   for (int i = 0; i < position.size(); i++) {

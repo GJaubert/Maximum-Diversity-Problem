@@ -26,6 +26,7 @@ class Mdp {
     float calculateZ();
     Mdp& operator=(const Mdp& other);
     void printMdp();
+    std::string toString();
 };
 
 
