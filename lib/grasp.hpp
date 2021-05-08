@@ -1,6 +1,6 @@
 #ifndef GRASP
 #define GRASP
-#define K 3
+#define K 2
 #define MAX_ITER 1
 
 #include <time.h>

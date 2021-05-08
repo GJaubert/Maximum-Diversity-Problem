@@ -10,9 +10,10 @@ using namespace std::chrono;
 int main(int args, char* argv[]) {
   try {
     std::ofstream file;
-    file.open("grasp-tables.txt", std::ofstream::app);
+    file.open("tables/grasp-tables.txt", std::ofstream::app);
     std::vector<std::string> sizes = {"15", "20", "30"};
     file << "| ID | n | k | m | Max_iter | LRC | z | S | CPU |\n";
+    file << "|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|\n";
     std::shared_ptr<Strategy> ptr;
     // ptr = std::make_shared<Greedy>();
     // ptr->computeSolution(test);
