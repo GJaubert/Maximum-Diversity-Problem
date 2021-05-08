@@ -2,13 +2,21 @@
 
 Mdp Grasp::computeSolution(Mdp object) {
   srand(time(NULL));
-  do {
-    object = insertFromLrc(object);
-  } while (object.solution.size() < object.getM());
-  //object.printMdp();
-  object.solution = getLocalOptimal(object);
-  //object.printMdp();
-  return object;
+  Mdp best;
+  Mdp original;
+  best = object;
+  original = object;
+  for (int iter = 0; iter < MAX_ITER; iter++) {
+    do {
+      object = insertFromLrc(object);
+    } while (object.solution.size() < object.getM());
+    object.solution = getLocalOptimal(object);
+    if (object.calculateZ() > best.calculateZ()) {
+      best = object;
+    }
+    object = original;
+  }
+  return best;
 }
 
 Mdp Grasp::insertFromLrc(Mdp object) {
@@ -32,8 +40,8 @@ Mdp Grasp::insertFromLrc(Mdp object) {
 
     int randomIndex = rand() % Lrc.size();
     object.solution.push_back(Lrc[randomIndex]);
-    Lrc.erase(Lrc.begin() + randomIndex); // borramos de lrc el que acabamosde introducir
-    for (int i = 0; i < Lrc.size(); i++) { // resinsertamos lrc
+    Lrc.erase(Lrc.begin() + randomIndex); // borramos de lrc el que acabamos de introducir
+    for (int i = 0; i < Lrc.size(); i++) { // reinsertamos lrc
       elem.push_back(Lrc[i]);
     }
     object.getSet() = elem;
@@ -76,6 +84,8 @@ bool Grasp::greedyChange(Mdp& object) {
       object.solution.insert(object.solution.begin() + i, object.getSet()[j]);
       float tmpZ = object.calculateZ();
       if (tmpZ > bestZ) {
+        object.getSet().push_back(object.solution[i]);
+        object.getSet().erase(object.getSet().begin() + j);
         bestMdp = object;
         bestZ = tmpZ;
         improvement = true;

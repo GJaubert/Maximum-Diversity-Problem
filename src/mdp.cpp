@@ -2,6 +2,7 @@
 
 Mdp::Mdp(std::string fileName, int mInput) {
   m = mInput;
+  solution.resize(0);
   std::ifstream file;
   std::string tmpString;
   file.open(fileName);
@@ -56,12 +57,12 @@ float Mdp::calculateDistance(std::vector<float> pointA, std::vector<float> point
 
 float Mdp::calculateZ() {
   float z = 0;
-  for (int i = 0; i < solution.size() - 1; i++) {
+  for (int i = 0; i < (int)solution.size() - 1; i++) {
     for (int j = i + 1; j < solution.size(); j++) {
       z += calculateDistance(solution[i].getPosition(), solution[j].getPosition());
     }
   }
- // std::cout << z<<"\n";
+  // std::cout << z<<"\n";
   return z;
 }
 
