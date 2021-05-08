@@ -33,7 +33,7 @@ int main(int args, char* argv[]) {
           result = ptr->computeSolution(newMdp);
           auto stop = high_resolution_clock::now();
           auto duration = duration_cast<microseconds>(stop - start);
-          file << fileName << "|" << sizes[s] << "|" << i << "|" << m << "|10|" << "2|" << result.calculateZ() << "|" << result.toString() << "|" << duration.count() << "\n"; 
+          file << "|" << fileName << "|" << sizes[s] << "|" << i << "|" << m << "|10|" << "2|" << result.calculateZ() << "|" << result.toString() << "|" << duration.count() << "|\n"; 
         }
       }
     }
