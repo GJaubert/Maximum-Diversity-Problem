@@ -25,7 +25,7 @@ int main(int args, char* argv[]) {
         fileName += sizes[s];
         fileName += "_";
         fileName += std::to_string(i);
-        fileName += ".txt";
+        fileName += ".md";
         for (int m = 2; m < 5; m++) {
           Mdp newMdp(fileName, m);
           ptr = std::make_shared<Grasp>();
