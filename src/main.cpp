@@ -15,8 +15,6 @@ int main(int args, char* argv[]) {
     file << "| ID | n | k | m | z | S | CPU(μs)\n";
     file << "|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|\n";
     std::shared_ptr<Strategy> ptr;
-    // ptr = std::make_shared<Greedy>();
-    // ptr->computeSolution(test);
     ptr = std::make_shared<Grasp>();
     Mdp result;
     for (int s = 0; s < sizes.size(); s++) {
