@@ -10,10 +10,14 @@ Mdp Grasp::computeSolution(Mdp object) {
     do {
       object = insertFromLrc(object);
     } while (object.solution.size() < object.getM());
+    std::cout << "original: \n";
+    object.printMdp();
     object.solution = getLocalOptimal(object);
     if (object.calculateZ() > best.calculateZ()) {
       best = object;
     }
+    std::cout << "Mejorado: \n";
+    object.printMdp();
     object = original;
   }
   return best;
@@ -84,6 +88,7 @@ bool Grasp::greedyChange(Mdp& object) {
       object.solution.insert(object.solution.begin() + i, object.getSet()[j]);
       float tmpZ = object.calculateZ();
       if (tmpZ > bestZ) {
+
         object.getSet().push_back(object.solution[i]);
         object.getSet().erase(object.getSet().begin() + j);
         bestMdp = object;
