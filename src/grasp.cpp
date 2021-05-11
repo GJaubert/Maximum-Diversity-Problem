@@ -1,5 +1,9 @@
 #include "../lib/grasp.hpp"
 
+Grasp::Grasp (int k) {
+  k_ = k;
+}
+
 Mdp Grasp::computeSolution(Mdp object) {
   srand(time(NULL));
   Mdp best;
@@ -10,14 +14,10 @@ Mdp Grasp::computeSolution(Mdp object) {
     do {
       object = insertFromLrc(object);
     } while (object.solution.size() < object.getM());
-    std::cout << "original: \n";
-    object.printMdp();
     object.solution = getLocalOptimal(object);
     if (object.calculateZ() > best.calculateZ()) {
       best = object;
     }
-    std::cout << "Mejorado: \n";
-    object.printMdp();
     object = original;
   }
   return best;
@@ -29,7 +29,7 @@ Mdp Grasp::insertFromLrc(Mdp object) {
     std::vector<Element> Lrc;
     std::vector<int> LrcIndexes;
 
-    for (int i = 0; i < K; i++) {
+    for (int i = 0; i < k_; i++) {
       std::vector<float> centre;
       if (object.solution.size() == 0) {
         centre = object.calculateCentre(elem);

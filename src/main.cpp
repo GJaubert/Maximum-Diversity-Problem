@@ -17,23 +17,24 @@ int main(int args, char* argv[]) {
     std::shared_ptr<Strategy> ptr;
     // ptr = std::make_shared<Greedy>();
     // ptr->computeSolution(test);
-    ptr = std::make_shared<Grasp>();
+    //ptr = std::make_shared<Grasp>();
     Mdp result;
     for (int s = 0; s < sizes.size(); s++) {
-      for (int i = 2; i < 4; i++) {
+      int k = 3;
+      for (int m = 2; m < 5; m++) {
         std::string fileName = "data/max_div_";
         fileName += sizes[s];
         fileName += "_";
-        fileName += std::to_string(i);
+        fileName += std::to_string(k);
         fileName += ".txt";
-        for (int m = 2; m < 5; m++) {
+      for (int lrcSize = 2; lrcSize < 4; lrcSize++) {
           Mdp newMdp(fileName, m);
-          ptr = std::make_shared<Grasp>();
+          ptr = std::make_shared<Grasp>(lrcSize);
           auto start = high_resolution_clock::now();
           result = ptr->computeSolution(newMdp);
           auto stop = high_resolution_clock::now();
           auto duration = duration_cast<microseconds>(stop - start);
-          file << fileName << "|" << sizes[s] << "|" << i << "|" << m << "|10|" << K << "|" << result.calculateZ() << "|" << result.toString() << "|" << duration.count() << "\n"; 
+          file << fileName << "|" << sizes[s] << "|" << k << "|" << m << "|10|" << lrcSize << "|" << result.calculateZ() << "|" << result.toString() << "|" << duration.count() << "\n"; 
         }
       }
     }
