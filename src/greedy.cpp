@@ -10,7 +10,6 @@ Mdp Greedy::computeSolution(Mdp object) {
     centre = object.calculateCentre(object.solution);
   } while (object.solution.size() < object.getM());
   object.solution = getLocalOptimal(object);
-  object.printMdp();
   return object;
 }
 

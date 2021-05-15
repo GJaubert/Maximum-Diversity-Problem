@@ -27,14 +27,14 @@ int main(int args, char* argv[]) {
         fileName += "_";
         fileName += std::to_string(k);
         fileName += ".txt";
-      for (int lrcSize = 2; lrcSize < 4; lrcSize++) {
-          Mdp newMdp(fileName, m);
-          ptr = std::make_shared<Grasp>(lrcSize);
-          auto start = high_resolution_clock::now();
-          result = ptr->computeSolution(newMdp);
-          auto stop = high_resolution_clock::now();
-          auto duration = duration_cast<microseconds>(stop - start);
-          file << fileName << "|" << sizes[s] << "|" << k << "|" << m << "|10|" << lrcSize << "|" << result.calculateZ() << "|" << result.toString() << "|" << duration.count() << "\n"; 
+        for (int lrcSize = 2; lrcSize < 4; lrcSize++) {
+            Mdp newMdp(fileName, m);
+            ptr = std::make_shared<Grasp>(lrcSize);
+            auto start = high_resolution_clock::now();
+            result = ptr->computeSolution(newMdp);
+            auto stop = high_resolution_clock::now();
+            auto duration = duration_cast<microseconds>(stop - start);
+            file << fileName << "|" << sizes[s] << "|" << k << "|" << m << "|10|" << lrcSize << "|" << result.calculateZ() << "|" << result.toString() << "|" << duration.count() << "\n"; 
         }
       }
     }

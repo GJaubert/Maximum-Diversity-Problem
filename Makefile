@@ -2,7 +2,7 @@ CXX = g++
 #CXXFLAGS = -Wall -Wextra -pedantic -std=c++17 -g -fsanitize=address
 LDFLAGS =  -fsanitize=address
 
-SRC = ./src/main.cpp ./src/mdp.cpp ./src/element.cpp ./src/greedy.cpp ./src/grasp.cpp
+SRC = ./src/main.cpp ./src/mdp.cpp ./src/element.cpp ./src/greedy.cpp ./src/grasp.cpp ../src/branch-bound.cpp
 OBJ = $(SRC:.cpp=.o)
 EXEC = main
 

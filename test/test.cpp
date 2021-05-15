@@ -2,6 +2,7 @@
 #include "../lib/strategy.hpp"
 #include "../lib/greedy.hpp"
 #include "../lib/grasp.hpp"
+#include "../lib/branch-bound.hpp"
 #include <memory>
 #include <chrono>
 #include <fstream>
@@ -10,9 +11,11 @@ using namespace std::chrono;
 int main(int args, char* argv[]) {
   try {
     Mdp test(argv[1], std::stoi(argv[2]));
-    std::shared_ptr<Strategy> ptr;
-    ptr = std::make_shared<Grasp>();
-    ptr->computeSolution(test);
+    // std::shared_ptr<BranchBound> ptr;
+    // ptr = std::make_shared<BranchBound>();
+    // ptr->computeSolution(test, 0);
+    BranchBound branch;
+    test = branch.computeSolution(test, 0);
     return 0;
   } catch(std::string err) {
     std::cout << err;
