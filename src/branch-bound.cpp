@@ -14,19 +14,16 @@ Mdp BranchBound::computeSolution(Mdp object, int constructionType) {
   firstSolution = constructionPhase(object, constructionType);
   solutions.push_back(firstSolution);
   bound = calculateUB(firstSolution);
-  //object = lowerUbStrat(object);
+  //object = lowerUbStrat(object);        //  descomentar para cambiar estrategia
   object = deepestNodeStrat(object);
-  //std::cout << generatedNodes << " ";
   return object;
 }
 
 Mdp BranchBound::lowerUbStrat(Mdp object) {
   std::vector<Node> queue;
   do {
-    //generatedNodes++;
     addCandidates(queue, object, 0);
     pruneNodes(queue);
-    //std::cout << " pruned:" << queue.size();
   }
   while ((queue.size() > 0) && (finish == false));
   return solutions[0];
@@ -35,7 +32,6 @@ Mdp BranchBound::lowerUbStrat(Mdp object) {
 Mdp BranchBound::deepestNodeStrat(Mdp object) {
   std::vector<Node> queue;
   do {
-    //generatedNodes++;
     addCandidates(queue, object, 1);
     pruneNodes(queue);
   }
@@ -60,7 +56,6 @@ Mdp BranchBound::constructionPhase(Mdp object, int mode) {
 void BranchBound::pruneNodes(std::vector<Node>& queue) {
   for (int i = 0; i < queue.size(); i++) {
     if (queue[i].UB < bound) {
-      //std::cout << "UB: " << queue[i].UB << " bound general: " << bound << "\n";
       queue.erase(queue.begin() + i);
       i--;
     }
@@ -74,11 +69,9 @@ void BranchBound::addCandidates(std::vector<Node>& queue, Mdp object, int strat)
       newMdp = object;
       newMdp.solution.push_back(allPoints[i]);
       newMdp.getSet() = std::vector<Element>(newMdp.getSet().begin() + i, newMdp.getSet().end());
-      //newMdp.getSet().erase(newMdp.getSet().begin() + i);
       Node newNode;
       newNode.mdp = newMdp;
       newNode.UB = calculateUB(newMdp);
-      //std::cout << newNode.UB << "\n";
       queue.push_back(newNode);
     }
   } else {
@@ -100,29 +93,22 @@ void BranchBound::addCandidates(std::vector<Node>& queue, Mdp object, int strat)
     if (queue[index].mdp.solution.size() == m) {  //  hemos llegado a una solucion completa, la añadimos al nuevo bound
       float tmpBound = calculateUB(queue[index].mdp);
       solutions[0].solution = queue[index].mdp.solution;
-     // std::cout << "mejora\n";
       bound = calculateUB(queue[index].mdp);
     } else {
-      //std::cout << " " << queue[index].mdp.solution.size();
-     // std::cout << "angel: " << allPoints.size() - (m - queue[index].mdp.solution.size()) - index + 1 << "\n";
       int pointPosition = allPoints.size() - queue[index].mdp.getSet().size();
       generatedNodes += allPoints.size() - (m - queue[index].mdp.solution.size()) - pointPosition + 1;
       for (int i = 0; i < allPoints.size() - (m - queue[index].mdp.solution.size()) - pointPosition + 1; i++) {
-        //std::cout << "hola";
         Mdp newMdp;
         newMdp = queue[index].mdp;
         newMdp.solution.push_back(newMdp.getSet()[i]);
         newMdp.getSet() = std::vector<Element>(newMdp.getSet().begin() + i, newMdp.getSet().end());
-        //newMdp.getSet().erase(newMdp.getSet().begin() + i);
         Node newNode;
         newNode.mdp = newMdp;
         newNode.UB = calculateUB(newMdp);
         queue.push_back(newNode);
       }
-      //std::cout << queue[index].UB << " solution size: " << queue[index].mdp.solution.size() << "\n";
     }
     queue.erase(queue.begin() + index);
-    //std::cout << " " <<  queue.size();
   }
 }
 
@@ -176,11 +162,8 @@ float BranchBound::calculateUB(Mdp object) {
     }
   }
   float z1 = object.calculateZ();
-  //std::cout << "z1 " << z1 << "\n";
   float z2 = calculateUB2(object, unselected);
-  //std::cout << "z2 " << z2 << "\n";
   float z3 = calculateUB3(object, unselected);
-  //std::cout << "z3 " << z3 << "\n";
   return z1 + z2 + z3;
 }
 
