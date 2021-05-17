@@ -62,7 +62,6 @@ float Mdp::calculateZ() {
       z += calculateDistance(solution[i].getPosition(), solution[j].getPosition());
     }
   }
-  // std::cout << z<<"\n";
   return z;
 }
 

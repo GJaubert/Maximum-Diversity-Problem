@@ -72,7 +72,6 @@ std::vector<Element> Grasp::getLocalOptimal(Mdp object) {
     improvement = greedyChange(object);
     i++;
   } while (improvement);
-  //maeobject.printMdp();
   return object.solution;
 }
 
@@ -98,7 +97,6 @@ bool Grasp::greedyChange(Mdp& object) {
     }
     object = originalCopy;
   }
-  //bestMdp.printMdp();
   object = bestMdp;
   return improvement;
 }

@@ -55,7 +55,6 @@ bool Greedy::greedyChange(Mdp& object) {
     }
     object = originalCopy;
   }
-  //bestMdp.printMdp();
   object = bestMdp;
   return improvement;
 }
