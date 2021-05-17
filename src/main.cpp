@@ -21,7 +21,7 @@ int main(int args, char* argv[]) {
     // ptr = std::make_shared<Grasp>();
     Mdp result;
     for (int s = 0; s < sizes.size(); s++) {
-      int k = 3;
+      int k = 2;
       for (int m = 2; m < 6; m++) {
         std::string fileName = "data/max_div_";
         fileName += sizes[s];
