@@ -16,7 +16,7 @@ int main(int args, char* argv[]) {
     // ptr->computeSolution(test, 0);
     BranchBound branch;
     test = branch.computeSolution(test, 0);
-    test.printMdp();
+    //test.printMdp();
     std::cout << "Nodos: " << branch.getGeneratedNodes() << "\n";
     return 0;
   } catch(std::string err) {
