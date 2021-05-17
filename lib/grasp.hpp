@@ -1,7 +1,7 @@
 #ifndef GRASP
 #define GRASP
-#define K 2
-#define MAX_ITER 1
+#define K 4
+#define MAX_ITER 15
 
 #include <time.h>
 #include <chrono>

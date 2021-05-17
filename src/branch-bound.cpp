@@ -152,7 +152,7 @@ int BranchBound::selectDeepestNode(std::vector<Node>& queue) {
 
 Mdp BranchBound::grasp(Mdp object) {
   std::shared_ptr<Grasp> ptr;
-  ptr = std::make_shared<Grasp>(2);
+  ptr = std::make_shared<Grasp>(5);
   object = ptr->computeSolution(object);
   return object;
 }
