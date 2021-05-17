@@ -6,6 +6,9 @@
 
 class Element {
   private:
+  /** Position of the point
+   *  @property
+   */
     std::vector<float> position;
   public:
     Element(std::vector<float>);

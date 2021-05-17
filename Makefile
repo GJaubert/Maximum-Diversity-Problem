@@ -4,7 +4,7 @@ LDFLAGS =  -fsanitize=address
 
 SRC = ./src/main.cpp ./src/mdp.cpp ./src/element.cpp ./src/greedy.cpp ./src/grasp.cpp ./src/branch-bound.cpp
 OBJ = $(SRC:.cpp=.o)
-EXEC = main
+EXEC = ./bin/main
 
 all: $(EXEC)
 

@@ -14,8 +14,8 @@ Mdp BranchBound::computeSolution(Mdp object, int constructionType) {
   firstSolution = constructionPhase(object, constructionType);
   solutions.push_back(firstSolution);
   bound = calculateUB(firstSolution);
-  //object = lowerUbStrat(object);        //  descomentar para cambiar estrategia
-  object = deepestNodeStrat(object);
+  object = lowerUbStrat(object);
+  //object = deepestNodeStrat(object);  //  descomentar para cambiar estrategia
   return object;
 }
 
