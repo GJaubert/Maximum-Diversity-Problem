@@ -124,8 +124,8 @@ class BranchBound {
    *  @param queue vector of partial of complete solutions
    *  @return index of the lowest UB node
    */ 
-    int selectLowestNode(std::vector<Node> queue); // MODIFICACION
-    int selectSecondHighestNode(std::vector<Node> queue);
+    int selectLowestNode(std::vector<Node> queue);
+    int selectSecondHighestNode(std::vector<Node> queue); // MODIFICACION
   /** Finds the node with the biggest depth on the tree
    *  @param queue vector of partial of complete solutions
    *  @return index of the node with the biggest depth on the tree
