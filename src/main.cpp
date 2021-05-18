@@ -13,8 +13,8 @@ int main(int args, char* argv[]) {
     std::ofstream file;
     file.open("tables/output-tables.md", std::ofstream::app);
     std::vector<std::string> sizes = {"15", "20", "30"};
-    file << "| ID | n | k | m | Max_iter | z | S | CPU(μs) | Nodes generated\n";
-    file << "|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|\n";
+    file << "| ID | n | k | m | z | S | CPU(μs) | Nodes generated\n"; // MODIFICADO
+    file << "|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|\n";
     std::shared_ptr<Strategy> ptr;
     Mdp result;
     for (int s = 0; s < sizes.size(); s++) {
@@ -35,7 +35,7 @@ int main(int args, char* argv[]) {
           result = branch.computeSolution(newMdp, 0);
           auto stop = high_resolution_clock::now();
           auto duration = duration_cast<microseconds>(stop - start);
-          file << fileName << "|" << sizes[s] << "|" << k << "|" << m << "|10|"  << result.calculateZ() << "|" << result.toString() << "|" << duration.count() << "|" << branch.getGeneratedNodes() << "\n"; 
+          file << fileName << "|" << sizes[s] << "|" << k << "|" << m << "|"  << result.calculateZ() << "|" << result.toString() << "|" << duration.count() << "|" << branch.getGeneratedNodes() << "\n"; 
         //}
       }
     }
