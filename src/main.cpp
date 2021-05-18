@@ -25,7 +25,7 @@ int main(int args, char* argv[]) {
         fileName += "_";
         fileName += std::to_string(k);
         fileName += ".txt";
-        for (int lrcSize = 2; lrcSize < 4; lrcSize++) {
+        //for (int lrcSize = 2; lrcSize < 4; lrcSize++) {
           Mdp newMdp(fileName, m);
           BranchBound branch;
           auto start = high_resolution_clock::now();
@@ -36,7 +36,7 @@ int main(int args, char* argv[]) {
           auto stop = high_resolution_clock::now();
           auto duration = duration_cast<microseconds>(stop - start);
           file << fileName << "|" << sizes[s] << "|" << k << "|" << m << "|10|"  << result.calculateZ() << "|" << result.toString() << "|" << duration.count() << "|" << branch.getGeneratedNodes() << "\n"; 
-        }
+        //}
       }
     }
     return 0;

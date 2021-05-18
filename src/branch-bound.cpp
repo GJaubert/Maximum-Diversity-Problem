@@ -78,7 +78,7 @@ void BranchBound::addCandidates(std::vector<Node>& queue, Mdp object, int strat)
     int index;
     switch (strat) {
       case 0:
-        index = selectLowestNode(queue);
+        index = selectSecondHighestNode(queue); //MODIFICADO antes: selectLowestNode
         break;
       case 1:
         index = selectDeepestNode(queue);
@@ -118,6 +118,25 @@ int BranchBound::selectLowestNode(std::vector<Node> queue) {
   for (int i = 0; i < queue.size(); i++) {
     if (queue[i].UB < lowestUB) {
       lowestUB = queue[i].UB;
+      index = i;
+    }
+  }
+  return index;
+}
+
+int BranchBound::selectSecondHighestNode(std::vector<Node> queue) { //MODIFICACION esta función es nueva
+  int index = -1;
+  int highestIndex = -1;
+  float highestUB = 0;
+  int secondHighestUB = 0;
+  for (int i = 0; i < queue.size(); i++) {
+    if (queue[i].UB > highestUB) {
+      index = highestIndex;         //los datos del mayor nodo ahora pasan a ser del segundo mejor
+      secondHighestUB = highestUB;
+      highestIndex = i;
+      highestUB = queue[i].UB;
+    } else if (queue[i].UB > secondHighestUB) {
+      secondHighestUB = queue[i].UB;
       index = i;
     }
   }
